@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-09-11 16:07:10 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-09-11 16:48:26
+ * @Last Modified time: 2018-09-13 16:45:01
  */
 
 import React from 'react';
@@ -11,6 +11,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import NavLeft from './components/NavLeft';
 import './style/common.less';
+import Home from './pages/home/';
 
 export default class Admin extends React.Component {
 
@@ -25,7 +26,7 @@ export default class Admin extends React.Component {
 
           </Header>
           <Row className="content">
-            <div>Row</div>
+            <Home />
           </Row>
           <Footer>
             

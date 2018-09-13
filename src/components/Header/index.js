@@ -2,48 +2,67 @@
  * @Author: zhongxd 
  * @Date: 2018-09-11 16:20:36 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-09-12 23:08:04
+ * @Last Modified time: 2018-09-13 16:03:21
  */
 
 import React from 'react';
-import { Row ,Col } from 'antd';
+import { Row, Col } from 'antd';
 import './index.less';
 import Utils from '../../utils/utils';
-export default class Footer extends React.Component{
+import Axios from '../../axios';
+export default class Footer extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {
-      userName:'',
-      sysTime:''
-    }
+    this.state = {};
   }
-  componentWillMount(){
-    this.setState({userName:"zhongxd"});
-    setInterval( () => {
+  componentWillMount() {
+    this.setState({ userName: "zhongxd" });
+    setInterval(() => {
       let sysTime = Utils.formateDate(new Date().getTime());
-      this.setState({sysTime:sysTime});
-    },1000);
+      this.setState({ sysTime: sysTime });
+    }, 1000);
+    this.getWeatherAPIData();
   }
- render(){
-   return(
-     <div className="header"> 
-       <Row className="header-top">
-         <Col span="24">
-          <span>欢迎，{this.state.userName}</span>
-          <a href="#">退出</a>
-         </Col>
-       </Row>
-       <Row className="breadcrumb">
-        <Col span="4" className="breadcrumb-title">
-          首页
-        </Col>
-        <Col span="24" className="weather">
-          <span className="date">{this.state.sysTime}</span>
-          <span className="weather-detail">地震</span>
-        </Col>
-       </Row>
-     </div>
-   )
- }
+  getWeatherAPIData() {
+    let city = '成都';
+    Axios.jsonp(
+      { url: 'http://api.map.baidu.com/telematics/v3/weather?location=' + encodeURIComponent(city) + '&output=json&ak=3p49MVra6urFRGOT9s8UBWr2' }
+    ).then((res) => {
+      if (res.status === "success") {
+        debugger;
+        let data = res.results[0].weather_data[0];
+        this.setState({
+          dayPictureUrl: data.dayPictureUrl,
+          weather: data.weather
+        });
+      }
+    });
+  }
+  render() {
+    return (
+      <div className="header">
+        <Row className="header-top">
+          <Col span="24">
+            <span>欢迎，{this.state.userName}</span>
+            <a href="#">退出</a>
+          </Col>
+        </Row>
+        <Row className="breadcrumb" style={{borderTop:"1px solid #f9c700"}}>
+          <Col span="4" className="breadcrumb-title">
+            首页
+          </Col>
+          <Col span="20" className="weather" style={{textAlign:"right"}}>
+            <span className="date">{this.state.sysTime}</span>
+            <span className="weather-img">
+              <img src={this.state.dayPictureUrl} alt="" />
+            </span>
+            <span className="weather-detail">
+              {this.state.weather}
+            </span>
+          </Col>
+        </Row>
+      </div>
+    )
+  }
 }
