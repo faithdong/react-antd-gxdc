@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-09-11 16:07:10 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-09-13 16:45:01
+ * @Last Modified time: 2018-09-13 22:19:35
  */
 
 import React from 'react';
@@ -11,7 +11,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import NavLeft from './components/NavLeft';
 import './style/common.less';
-import Home from './pages/home/';
+//import Home from './pages/home/';
+//import Home from './pages/route_demo/route1/Home';
+import Home from './pages/route_demo/route2/router';
 
 export default class Admin extends React.Component {
 
