@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-09-11 16:07:10 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-09-13 22:19:35
+ * @Last Modified time: 2018-09-14 11:08:14
  */
 
 import React from 'react';
@@ -13,7 +13,7 @@ import NavLeft from './components/NavLeft';
 import './style/common.less';
 //import Home from './pages/home/';
 //import Home from './pages/route_demo/route1/Home';
-import Home from './pages/route_demo/route2/router';
+//import Home from './pages/route_demo/route2/router';
 
 export default class Admin extends React.Component {
 
@@ -28,7 +28,8 @@ export default class Admin extends React.Component {
 
           </Header>
           <Row className="content">
-            <Home />
+            {/* <Home /> */}
+            {this.props.children}
           </Row>
           <Footer>
             

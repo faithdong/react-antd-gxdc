@@ -2,12 +2,13 @@
  * @Author: zhongxd 
  * @Date: 2018-09-11 16:23:55 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-09-13 15:22:36
+ * @Last Modified time: 2018-09-14 11:08:47
  */
 
 
 import React from 'react';
-import { Menu, Icon } from 'antd';
+import { Menu } from 'antd';
+import {NavLink} from 'react-router-dom';
 import MenuConfig from '../../config/menuConfig';
 import './index.less';
 
@@ -27,7 +28,9 @@ export default class NavLeft extends React.Component {
           </SubMenu>
         )
       }
-      return <Menu.Item title={item.title} key={item.key}>{item.title}</Menu.Item>
+      return <Menu.Item title={item.title} key={item.key}>
+        <NavLink to={item.key}>{item.title}</NavLink>
+      </Menu.Item>
     })
   }
   render() {

@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-09-11 16:51:35 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-09-11 16:53:58
+ * @Last Modified time: 2018-09-14 17:29:48
  */
 
 
@@ -17,19 +17,19 @@ const menuList = [
       children: [
           {
               title: '按钮',
-              key: '/ui/buttons',
+              key: '/admin/ui/buttons',
           },
           {
               title: '弹框',
-              key: '/ui/modals',
+              key: '/admin/ui/modals',
           },
           {
               title: 'Loading',
-              key: '/ui/loadings',
+              key: '/admin/ui/loadings',
           },
           {
               title: '通知提醒',
-              key: '/ui/notification',
+              key: '/admin/ui/notification',
           },
           {
               title: '全局Message',

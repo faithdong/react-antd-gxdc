@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-09-11 16:20:36 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-09-13 16:03:21
+ * @Last Modified time: 2018-09-14 10:56:35
  */
 
 import React from 'react';
@@ -30,7 +30,6 @@ export default class Footer extends React.Component {
       { url: 'http://api.map.baidu.com/telematics/v3/weather?location=' + encodeURIComponent(city) + '&output=json&ak=3p49MVra6urFRGOT9s8UBWr2' }
     ).then((res) => {
       if (res.status === "success") {
-        debugger;
         let data = res.results[0].weather_data[0];
         this.setState({
           dayPictureUrl: data.dayPictureUrl,
