@@ -9,6 +9,9 @@
  import Loadings from './pages/ui/loadings';
  import Notice from './pages/ui/notice';
  import NoMatch from './pages/nomatch';
+ import FormLogin from './pages/form/login';
+ import FormRegister from './pages/form/register';
+ 
 
  export default class IRouter extends React.Component{
 
@@ -23,6 +26,8 @@
               <Route path="/admin/ui/modals" component={Modals}/>
               <Route path="/admin/ui/loadings" component={Loadings}/>
               <Route path="/admin/ui/notification" component={Notice}/>
+              <Route path="/admin/form/login" component={FormLogin}/>
+              <Route path="/admin/form/reg" component={FormRegister}/>
               <Route component={NoMatch}/>
             </Admin>
           } />

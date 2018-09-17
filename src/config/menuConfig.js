@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-09-11 16:51:35 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-09-14 17:29:48
+ * @Last Modified time: 2018-09-17 14:35:17
  */
 
 
@@ -51,15 +51,15 @@ const menuList = [
   },
   {
       title: '表单',
-      key: '/form',
+      key: '/admin/form',
       children: [
           {
               title: '登录',
-              key: '/form/login',
+              key: '/admin/form/login',
           },
           {
               title: '注册',
-              key: '/form/reg',
+              key: '/admin/form/reg',
           }
       ]
   },
