@@ -11,6 +11,8 @@
  import NoMatch from './pages/nomatch';
  import FormLogin from './pages/form/login';
  import FormRegister from './pages/form/register';
+ import BasicTable from './pages/table/basicTable';
+ import HighTable from './pages/table/highTable';
  
 
  export default class IRouter extends React.Component{
@@ -28,6 +30,8 @@
               <Route path="/admin/ui/notification" component={Notice}/>
               <Route path="/admin/form/login" component={FormLogin}/>
               <Route path="/admin/form/reg" component={FormRegister}/>
+              <Route path="/admin/table/basic" component={BasicTable}/>
+              <Route path="/admin/table/high" component={HighTable}/>
               <Route component={NoMatch}/>
             </Admin>
           } />
