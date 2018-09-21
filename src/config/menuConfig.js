@@ -87,7 +87,7 @@ const menuList = [
   },
   {
       title: '订单管理',
-      key: '/order',
+      key: '/admin/order',
       btnList: [
           {
               title: '订单详情',

@@ -31,9 +31,7 @@ export default class Admin extends React.Component {
             {/* <Home /> */}
             {this.props.children}
           </Row>
-          <Footer>
-            
-          </Footer>
+          <Footer></Footer>
         </Col>
       </Row>
     )
