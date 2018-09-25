@@ -2,13 +2,27 @@
  * @Author: zhongxd 
  * @Date: 2018-09-13 14:52:12 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-09-18 17:45:02
+ * @Last Modified time: 2018-09-25 17:33:14
  */
 
 import JsonP from 'jsonp';
 import axios from 'axios';
 import { Modal } from 'antd';
 export default class Axios {
+  static requestList(url , params){
+    let data = {
+      params : params
+    };
+    this.ajax({
+      url:url,
+      data:data
+    }.then( (data) => {
+      if(data){
+        //let list = res.result.item
+      }
+    }));
+  }
+
   static jsonp(options) {
     return new Promise((resolve, reject) => {
       JsonP(options.url, {

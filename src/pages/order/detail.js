@@ -47,7 +47,7 @@ export default class OrderDetail extends React.Component {
     // 调用路线图绘制方法
     this.drawBikeRoute(result.position_list);
     // 调用服务区绘制方法
-    //this.drwaServiceArea(result.area);
+    this.drwaServiceArea(result.area);
   }
 
   addMapControl = () => {
@@ -79,17 +79,39 @@ export default class OrderDetail extends React.Component {
       });
       let endMarker = new window.BMap.Marker(endPoint, { icon: endIcon });
       this.map.addOverlay(endMarker);
-      
+
       //连接路线图
       let trackPoint = [];
-      for(let i=0,len=positionList.length;i<len;i++){
-        
+      for (let i = 0, len = positionList.length; i < len; i++) {
+        let point = positionList[i];
+        trackPoint.push(new window.BMap.Point(point.lon, point.lat));
       }
+      let polyline = new window.BMap.Polyline(trackPoint, {
+        strokeColor: '#1869AD',
+        strokeWeight: 3,
+        strokeOpacity: 1
+      })
+      this.map.addOverlay(polyline);
+      this.map.centerAndZoom(endPoint, 11);
     }
   }
 
   drwaServiceArea = (positionList) => {
-
+     // 连接路线图
+     let trackPoint = [];
+     for (let i = 0; i < positionList.length; i++) {
+       let point = positionList[i];
+       trackPoint.push(new window.BMap.Point(point.lon, point.lat));
+     }
+     // 绘制服务区
+     let polygon = new window.BMap.Polygon(trackPoint, {
+       strokeColor: '#CE0000',
+       strokeWeight: 4,
+       strokeOpacity: 1,
+       fillColor: '#ff8605',
+       fillOpacity: 0.4
+     })
+     this.map.addOverlay(polygon);
   }
 
   render() {

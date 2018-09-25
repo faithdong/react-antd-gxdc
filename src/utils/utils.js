@@ -2,9 +2,12 @@
  * @Author: zhongxd 
  * @Date: 2018-09-12 22:54:12 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-09-12 23:04:48
+ * @Last Modified time: 2018-09-25 14:59:22
  */
 
+ import React from 'react';
+ import { Select } from 'antd';
+ const Option = Select.Option;
  export default {
 	 formateDate(time){
 		 if(!time)return '';
@@ -25,5 +28,15 @@
        showQuickJumper:true
      };
      return page;
+   },
+   getOptionsList(data){
+    if(!data){
+      return [];
+    }
+    let options = [];
+    data.map( (item ) => {
+      options.push(<Option  value={item.id} key={item.id}>{item.name}</Option>);
+    });
+    return options;
    }
- }
+ } 
