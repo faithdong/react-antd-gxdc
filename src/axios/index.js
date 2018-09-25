@@ -8,19 +8,31 @@
 import JsonP from 'jsonp';
 import axios from 'axios';
 import { Modal } from 'antd';
+import Utils from './../utils/utils';
+
 export default class Axios {
-  static requestList(url , params){
+  static requestList(_this ,url, params) {
     let data = {
-      params : params
+      params: params
     };
     this.ajax({
-      url:url,
-      data:data
-    }.then( (data) => {
-      if(data){
-        //let list = res.result.item
+      url: url,
+      data: data
+    }).then((data) => {
+      if (data && data.result) {
+        let list = data.result.item_list.map( (item ,index) => {
+          item.key = index;
+          return item;
+        });
+        _this.setState({
+          list,
+          pagination: Utils.pagination(data, (current) => {
+            _this.params.page = current;
+            _this.requestList();
+          })
+        })
       }
-    }));
+    });
   }
 
   static jsonp(options) {
@@ -28,45 +40,45 @@ export default class Axios {
       JsonP(options.url, {
         param: 'callback'
       }, function (error, result) {
-        if(result.status === "success"){
+        if (result.status === "success") {
           return resolve(result);
-        }else{
+        } else {
           return reject(result.message);
         }
       })
     })
   }
 
-  static ajax(options){
+  static ajax(options) {
     let loading;
-    if (options.data && options.data.isShowLoading !== false){
-        loading = document.getElementById('ajaxLoading');
-        loading.style.display = 'block';
+    if (options.data && options.data.isShowLoading !== false) {
+      loading = document.getElementById('ajaxLoading');
+      loading.style.display = 'block';
     }
     let baseApi = 'https://www.easy-mock.com/mock/5a7278e28d0c633b9c4adbd7/api';
-    return  new Promise((resolve,reject)=>{
+    return new Promise((resolve, reject) => {
       axios({
-        url:options.url,
-        method:'get',
-        baseURL:baseApi,
+        url: options.url,
+        method: 'get',
+        baseURL: baseApi,
         //timeout:5000,
-        params:(options.data && options.data.params) || ''
-      }).then((response)=>{
-        if (options.data && options.data.isShowLoading !== false){
+        params: (options.data && options.data.params) || ''
+      }).then((response) => {
+        if (options.data && options.data.isShowLoading !== false) {
           loading = document.getElementById('ajaxLoading');
           loading.style.display = 'none';
         }
-        if(response.status == '200'){
+        if (response.status == '200') {
           let res = response.data;
-          if(res.code == '0'){
+          if (res.code == '0') {
             resolve(res);
-          }else{
+          } else {
             Modal.info({
-              title:"提示",
-              content:res.data.msg
+              title: "提示",
+              content: res.data.msg
             });
           }
-        }else{
+        } else {
           reject(response.data);
         }
       })

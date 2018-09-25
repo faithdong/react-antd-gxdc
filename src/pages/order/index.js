@@ -49,9 +49,10 @@ class Order extends React.Component {
   componentWillMount() {
     this.requestList();
   }
+
   requestList = () => {
-    let _this = this;
-    axios.ajax({
+    axios.requestList(this,'/order/list',this.params);
+    /* axios.ajax({
       url: '/order/list',
       data: {
         params: {
@@ -70,7 +71,7 @@ class Order extends React.Component {
           _this.requestList();
         })
       })
-    })
+    }) */
   }
 
   onRowClick = (record, index) => {
