@@ -8,11 +8,8 @@
 import React from 'react';
 import { Card, Button, message, Form, Select, Table, Modal, DatePicker } from 'antd';
 import axios from './../../axios';
-import Utils from './../../utils/utils';
+//import Utils from './../../utils/utils';
 import BaseFrom from '../../components/BaseForm'
-
-const FormItem = Form.Item;
-const Option = Select.Option;
 
 
 class Order extends React.Component {
@@ -102,7 +99,6 @@ class Order extends React.Component {
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form;
     const columns = [
       {
         title: "订单编号",
