@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-09-11 16:51:35 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-09-17 14:35:17
+ * @Last Modified time: 2018-09-26 10:49:47
  */
 
 
@@ -127,7 +127,7 @@ const menuList = [
   },
   {
       title: '权限设置',
-      key: '/permission'
+      key: '/admin/permission'
   },
 ];
 export default menuList;
