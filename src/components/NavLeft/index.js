@@ -2,21 +2,27 @@
  * @Author: zhongxd 
  * @Date: 2018-09-11 16:23:55 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-09-14 11:08:47
+ * @Last Modified time: 2018-09-27 16:46:28
  */
 
 
 import React from 'react';
 import { Menu } from 'antd';
 import {NavLink} from 'react-router-dom';
-import MenuConfig from '../../config/menuConfig';
+import { connect } from 'react-redux';
+import { switchMenu } from './../../redux/action';
+import MenuConfig from './../../config/menuConfig';
 import './index.less';
 
 const SubMenu = Menu.SubMenu;
-export default class NavLeft extends React.Component {
+class NavLeft extends React.Component {
+  state = {
+    currentKey:''
+  };
   componentWillMount() {
     const menuTreeNode = this.renderMenu(MenuConfig);
-    this.setState({ menuTreeNode });
+    let currentKey = window.location.hash.replace(/#|\?.*$/g,'');
+    this.setState({ menuTreeNode,currentKey });
   }
   //菜单渲染
   renderMenu = (data) => {
@@ -33,6 +39,12 @@ export default class NavLeft extends React.Component {
       </Menu.Item>
     })
   }
+  handleClick = ({item}) => {
+    const { dispatch } = this.props;
+    dispatch(switchMenu(item.props.title));
+    console.log(item);
+    this.setState({currentKey:item.key});
+  }
   render() {
     return (
       <div>
@@ -40,16 +52,15 @@ export default class NavLeft extends React.Component {
           <img src="/assets/logo-ant.svg" alt="" />
           <h1>Imooc MS</h1>
         </div>
-        <Menu theme="dark">
-          {/* <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-            <Menu.Item key="1">Option 1</Menu.Item>
-            <Menu.Item key="2">Option 2</Menu.Item>
-            <Menu.Item key="3">Option 3</Menu.Item>
-            <Menu.Item key="4">Option 4</Menu.Item>
-          </SubMenu> */}
+        <Menu
+          onClick={this.handleClick}
+          selectedKeys={[this.state.currentKey]} 
+          theme="dark">
           {this.state.menuTreeNode}
         </Menu>
       </div>
     )
   }
 }
+
+export default connect()(NavLeft);

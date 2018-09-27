@@ -2,7 +2,7 @@
  * @Author: zhongxd 
  * @Date: 2018-09-11 16:20:36 
  * @Last Modified by: zhongxd
- * @Last Modified time: 2018-09-21 13:52:14
+ * @Last Modified time: 2018-09-27 17:08:22
  */
 
 import React from 'react';
@@ -10,7 +10,9 @@ import { Row, Col } from 'antd';
 import './index.less';
 import Utils from '../../utils/utils';
 import Axios from '../../axios';
-export default class Footer extends React.Component {
+import { connect } from 'react-redux';
+class Header extends React.Component {
+  state={};
 
   constructor(props) {
     super(props);
@@ -39,7 +41,7 @@ export default class Footer extends React.Component {
     });
   }
   render() {
-    const { menuName, menuType } = this.props;
+    const { menuType } = this.props;
     return (
       <div className="header">
         <Row className="header-top">
@@ -59,7 +61,7 @@ export default class Footer extends React.Component {
           menuType ? '' :
             <Row className="breadcrumb">
               <Col span="4" className="breadcrumb-title">
-                {menuName || '首页'}
+                {this.props.menuName || '首页'}
               </Col>
               <Col span="20" className="weather">
                 <span className="date">{this.state.sysTime}</span>
@@ -76,3 +78,10 @@ export default class Footer extends React.Component {
     )
   }
 }
+const mapStateToProps = state => {
+  return {
+      menuName: state.menuName
+  }
+};
+//export default connect(mapStateToProps)(Header);
+export default Header;
