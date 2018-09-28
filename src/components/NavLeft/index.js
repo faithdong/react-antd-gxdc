@@ -55,7 +55,7 @@ class NavLeft extends React.Component {
         <Menu
           onClick={this.handleClick}
           selectedKeys={[this.state.currentKey]} 
-          theme="dark">
+          theme="light">
           {this.state.menuTreeNode}
         </Menu>
       </div>
