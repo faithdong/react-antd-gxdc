@@ -46,7 +46,8 @@ const menuList = [
           {
               title: '轮播图',
               key: '/ui/carousel',
-          }
+          },
+          
       ]
   },
   {
